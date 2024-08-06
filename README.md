@@ -1,1 +1,1 @@
-A user-friendly application that partitions data.
+A user-friendly application that partitions data (placeholder)
