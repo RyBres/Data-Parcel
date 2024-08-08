@@ -1,7 +1,7 @@
-module com.mycompany.dataparcel {
+module rybres.dataparcel {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens com.mycompany.dataparcel to javafx.fxml;
-    exports com.mycompany.dataparcel;
+    opens rybres.dataparcel to javafx.fxml;
+    exports rybres.dataparcel;
 }

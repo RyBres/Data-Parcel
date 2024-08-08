@@ -1,4 +1,4 @@
-package com.mycompany.dataparcel;
+package rybres.dataparcel;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

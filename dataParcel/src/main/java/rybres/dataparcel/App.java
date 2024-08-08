@@ -1,4 +1,4 @@
-package com.mycompany.dataparcel;
+package rybres.dataparcel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
