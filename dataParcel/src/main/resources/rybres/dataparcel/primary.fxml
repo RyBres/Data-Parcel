@@ -21,21 +21,21 @@
       </ToolBar>
       
       <!--Main contents -->
-      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="40.0" prefHeight="200.0" prefWidth="417.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="40.0" prefHeight="200.0" prefWidth="390.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
-            <HBox prefHeight="26.0" prefWidth="440.0">
+            <HBox prefHeight="25.0" prefWidth="440.0">
                <children>
-                  <TextField fx:id="pathTextField" prefHeight="20.0" prefWidth="250.0" />
+                  <TextField fx:id="pathTextField" prefHeight="20.0" prefWidth="250.0" promptText="Select an input file" />
                   <Button fx:id="browseButton" mnemonicParsing="false" onAction="#handleBrowseButtonAction" prefHeight="25.0" prefWidth="70.0" text="Browse" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin></Button>
                </children>
             </HBox>
-            <HBox prefHeight="26.0" prefWidth="436.0">
+            <HBox prefHeight="25.0" prefWidth="440.0">
                <children>
-                  <ComboBox fx:id="methodComboBox" prefHeight="25.0" prefWidth="150.0" onAction="#handleMethodSelection"/>
-                  <TextField fx:id="methodParamTextField" promptText="# Rows" prefHeight="25.0" prefWidth="95.0">
+                  <ComboBox fx:id="methodComboBox" onAction="#handleMethodSelection" prefHeight="25.0" prefWidth="150.0" />
+                  <TextField fx:id="methodParamTextField" prefHeight="25.0" prefWidth="95.0" promptText="# Rows">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -47,6 +47,21 @@
                   </ComboBox>
                </children>
             </HBox>
+            <HBox prefHeight="25.0" prefWidth="440.0">
+               <children>
+                  <TextField fx:id="outputPathTextField" prefHeight="25.0" prefWidth="250.0" promptText="Select an output destination" />
+                  <Button fx:id="browseButton1" mnemonicParsing="false" onAction="#handleBrowseButton1Action" prefHeight="25.0" prefWidth="70.0" text="Browse" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="25.0" prefWidth="440.0">
+               <children>
+                  <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButtonAction" text="Start" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -56,9 +71,10 @@
          
       </VBox>
       
-      <!-- Outside text -->
-      <Label alignment="TOP_CENTER" layoutX="39.0" layoutY="64.0" prefHeight="17.0" prefWidth="35.0" text="Path: " textAlignment="RIGHT" />
+      <!-- Outside  text -->
+      <Label alignment="TOP_CENTER" layoutX="39.0" layoutY="64.0" prefHeight="17.0" prefWidth="35.0" text="Input: " textAlignment="RIGHT" />
       <Label alignment="TOP_CENTER" layoutX="19.0" layoutY="110.0" prefHeight="17.0" prefWidth="55.0" text="Method: " />
+      <Label alignment="TOP_CENTER" layoutX="26.0" layoutY="156.0" prefHeight="17.0" prefWidth="41.0" text="Output:" textAlignment="RIGHT" />
       
    </children>
 </AnchorPane>

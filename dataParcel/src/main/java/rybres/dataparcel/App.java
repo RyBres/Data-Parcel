@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * Data Parcel App
  */
 public class App extends Application {
 
@@ -19,7 +19,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 480, 240);
         stage.setScene(scene);
+        stage.setTitle("DataParcel");
         stage.show();
+        stage.setResizable(false);
     }
 
     static void setRoot(String fxml) throws IOException {

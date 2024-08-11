@@ -33,7 +33,7 @@ public class PrimaryController {
         sizeParamComboBox.setVisible(false); // keep hidden unless file size is selected
     }
     
-    // Path textField classes
+    // Path textField
     @FXML
     private TextField pathTextField;
     
@@ -49,7 +49,23 @@ public class PrimaryController {
         }
     }
     
-    // Exit button classes
+    @FXML
+    private TextField outputPathTextField;
+    
+    @FXML
+    private void handleBrowseButton1Action(ActionEvent event)
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File");
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null)
+        {
+            outputPathTextField.setText(selectedFile.getAbsolutePath());
+        }
+    }
+    
+    
+    // Exit button
     @FXML
     private Button exitButton;
     
@@ -60,7 +76,7 @@ public class PrimaryController {
         stage.close();
     }
     
-    // Method menu selection classes
+    // Method menu selection
     @FXML
     private TextField methodParamTextField;
     
@@ -90,6 +106,18 @@ public class PrimaryController {
                 break;
         }
         
+    }
+    
+    // Start button
+    @FXML
+    private Button startButton;
+    
+    @FXML
+    private void handleStartButtonAction(ActionEvent event)
+    {
+        // Placeholder action - application will run when start is clicked
+        //Stage stage = (Stage) startButton.getScene().getWindow();
+        //stage.close();
     }
     
 }
