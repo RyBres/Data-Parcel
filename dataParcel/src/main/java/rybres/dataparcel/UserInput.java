@@ -8,6 +8,12 @@ package rybres.dataparcel;
  *
  * @author bresn
  */
-public class DataPartitionModel {
+public class UserInput {
     
+    public UserInput()
+    {
+        
+    }
+    
+
 }

@@ -25,7 +25,7 @@
          <children>
             <HBox prefHeight="25.0" prefWidth="440.0">
                <children>
-                  <TextField fx:id="pathTextField" prefHeight="20.0" prefWidth="250.0" promptText="Select an input file" />
+                  <TextField fx:id="inputPathTextField" prefHeight="20.0" prefWidth="250.0" promptText="Select an input file" />
                   <Button fx:id="browseButton" mnemonicParsing="false" onAction="#handleBrowseButtonAction" prefHeight="25.0" prefWidth="70.0" text="Browse" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets left="5.0" />

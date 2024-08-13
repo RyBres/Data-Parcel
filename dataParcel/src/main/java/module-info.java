@@ -4,4 +4,5 @@ module rybres.dataparcel {
 
     opens rybres.dataparcel to javafx.fxml;
     exports rybres.dataparcel;
+    requires univocity.parsers;
 }

@@ -1,3 +1,5 @@
+rybres\dataparcel\Model.class
+rybres\dataparcel\UserInput.class
 rybres\dataparcel\PrimaryController.class
 module-info.class
 rybres\dataparcel\App.class
