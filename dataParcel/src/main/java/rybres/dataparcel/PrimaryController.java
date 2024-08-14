@@ -22,7 +22,7 @@ public class PrimaryController {
     @FXML
     private void initialize() {
         // Method combo box
-        methodComboBox.getItems().addAll("Row number", "Partition number", "Partition size");
+        methodComboBox.getItems().addAll("Row number", "Partition number"); // , "Partition size" is removed for now
         methodComboBox.setValue("Row number");
 
         // File size combo box
@@ -86,10 +86,12 @@ public class PrimaryController {
                 methodParamTextField.setPromptText("# Partitions");
                 sizeParamComboBox.setVisible(false);
                 break;
+/*
             case "Partition size":
                 methodParamTextField.setPromptText("Size");
                 sizeParamComboBox.setVisible(true);
                 break;
+*/
             default:
                 methodParamTextField.setPromptText("# Rows");
                 sizeParamComboBox.setVisible(false);
