@@ -12,19 +12,35 @@
 
 <AnchorPane prefHeight="240.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rybres.dataparcel.PrimaryController">
    <children>
-       
-       <!--Top menu bar -->
-      <ToolBar prefHeight="40.0" prefWidth="480.0">
-        <items>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButtonAction" text="Exit" />
-        </items>
-      </ToolBar>
+      <VBox>
+         <children>
+            <HBox>
+               <children>
+                   
+                   <!--Top menu bar -->
+                  <ToolBar prefHeight="40.0" prefWidth="240.0" HBox.hgrow="ALWAYS">
+                    <items>
+                        <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: darkgreen; -fx-text-fill: white; -fx-font-weight: bold; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Start" />
+                    </items>
+                  </ToolBar>
+                  <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="240.0" HBox.hgrow="NEVER">
+                     <items>
+                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="25.0" prefWidth="50.0" style="-fx-font-weight: bold;" text="Exit" />
+                     </items>
+                  </ToolBar>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
       
       <!--Main contents -->
-      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="40.0" prefHeight="200.0" prefWidth="390.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <VBox alignment="TOP_CENTER" layoutY="40.0" prefHeight="200.0" prefWidth="480.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <children>
-            <HBox prefHeight="25.0" prefWidth="440.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="440.0">
                <children>
+                  
+                  <!-- Outside  text -->
+                  <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="50.0" text="Input: " textAlignment="RIGHT" />
                   <TextField fx:id="inputPathTextField" prefHeight="20.0" prefWidth="250.0" promptText="Select an input file" />
                   <Button fx:id="browseButton" mnemonicParsing="false" onAction="#handleBrowseButtonAction" prefHeight="25.0" prefWidth="70.0" text="Browse" textAlignment="CENTER">
                      <HBox.margin>
@@ -32,8 +48,9 @@
                      </HBox.margin></Button>
                </children>
             </HBox>
-            <HBox prefHeight="25.0" prefWidth="440.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="440.0">
                <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="50.0" text="Method: " textAlignment="RIGHT" />
                   <ComboBox fx:id="methodComboBox" onAction="#handleMethodSelection" prefHeight="25.0" prefWidth="150.0" />
                   <TextField fx:id="methodParamTextField" prefHeight="25.0" prefWidth="95.0" promptText="# Rows">
                      <HBox.margin>
@@ -47,8 +64,9 @@
                   </ComboBox>
                </children>
             </HBox>
-            <HBox prefHeight="25.0" prefWidth="440.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="440.0">
                <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="50.0" text="Output: " textAlignment="RIGHT" />
                   <TextField fx:id="outputPathTextField" prefHeight="25.0" prefWidth="250.0" promptText="Select an output destination" />
                   <Button fx:id="browseButton1" mnemonicParsing="false" onAction="#handleBrowseButton1Action" prefHeight="25.0" prefWidth="70.0" text="Browse" textAlignment="CENTER">
                      <HBox.margin>
@@ -57,11 +75,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="25.0" prefWidth="440.0">
-               <children>
-                  <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButtonAction" text="Start" />
-               </children>
-            </HBox>
+            <HBox prefHeight="25.0" prefWidth="440.0" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -70,11 +84,6 @@
          <!-- Conditional fields -->
          
       </VBox>
-      
-      <!-- Outside  text -->
-      <Label alignment="TOP_CENTER" layoutX="39.0" layoutY="64.0" prefHeight="17.0" prefWidth="35.0" text="Input: " textAlignment="RIGHT" />
-      <Label alignment="TOP_CENTER" layoutX="19.0" layoutY="110.0" prefHeight="17.0" prefWidth="55.0" text="Method: " />
-      <Label alignment="TOP_CENTER" layoutX="26.0" layoutY="156.0" prefHeight="17.0" prefWidth="41.0" text="Output:" textAlignment="RIGHT" />
       
    </children>
 </AnchorPane>

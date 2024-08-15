@@ -1,5 +1,6 @@
 package rybres.dataparcel;
 
+import rybres.dataparcel.model.PartitionMethods;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
@@ -104,7 +105,7 @@ public class PrimaryController {
     @FXML
     private Button startButton;
 
-    private final Model model = new Model();
+    private final PartitionMethods partitionMethods = new PartitionMethods();
     
     @FXML
     private void handleStartButtonAction(ActionEvent event) {
@@ -118,9 +119,9 @@ public class PrimaryController {
 
         
         try {
-            model.startAnyMethod(methodType, inputFile, outputFile, rowNumber);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            partitionMethods.startAnyMethod(methodType, inputFile, outputFile, rowNumber);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

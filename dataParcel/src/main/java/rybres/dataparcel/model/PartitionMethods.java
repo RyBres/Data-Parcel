@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package rybres.dataparcel;
+package rybres.dataparcel.model;
 
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -20,7 +20,7 @@ import com.univocity.parsers.csv.CsvRoutines;
 import java.io.File;
 import static java.lang.Math.ceil;
 
-public class Model {
+public class PartitionMethods {
 
     public void startAnyMethod(String methodType, String inputFile, String outputFile, int rowNumber) throws IOException {
         System.out.println("Method type: " + methodType);
