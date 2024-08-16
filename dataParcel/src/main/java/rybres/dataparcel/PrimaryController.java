@@ -103,26 +103,46 @@ public class PrimaryController {
 
     // Start button
     @FXML
-    private Button startButton;
+    private Button startButton; // this should probably be called startStopButton or something since that's what it is
 
     private final PartitionMethods partitionMethods = new PartitionMethods();
     
+    private boolean processStarted = true;
+    
     @FXML
     private void handleStartButtonAction(ActionEvent event) {
-        // Define input variables
-        System.out.println("Start button clicked");
-        String methodType = methodComboBox.getValue();
-        String inputFile = inputPathTextField.getText();
-        String outputFile = outputPathTextField.getText();
-        int rowNumber;
-        rowNumber = Integer.parseInt(methodParamTextField.getText());
-
         
-        try {
-            partitionMethods.startAnyMethod(methodType, inputFile, outputFile, rowNumber);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (processStarted == true) {
+            try {
+                // Define input variables
+                String methodType = methodComboBox.getValue();
+                String inputFile = inputPathTextField.getText();
+                String outputFile = outputPathTextField.getText();
+                
+                int rowNumber;
+                rowNumber = Integer.parseInt(methodParamTextField.getText());
+                
+                // Initiate processing
+                partitionMethods.startAnyMethod(methodType, inputFile, outputFile, rowNumber);
+                processStarted = !processStarted; // boolean switch for starting/stopping. Only switches if user input is correct, else IO exception
+                
+                // Change appearance to stop button
+                System.out.println("Start button clicked");
+                startButton.setText("Stop");
+                startButton.getStyleClass().add("button-stop");
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+        } else if (processStarted == false) {
+            System.out.println("Stop button clicked");
+            startButton.setText("Start");
+            startButton.getStyleClass().add("button-start");
+            
+            // Stopping method goes here
         }
+        
     }
 
 }

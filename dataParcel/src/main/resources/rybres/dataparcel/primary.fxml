@@ -20,7 +20,7 @@
                    <!--Top menu bar -->
                   <ToolBar prefHeight="40.0" prefWidth="240.0" HBox.hgrow="ALWAYS">
                     <items>
-                        <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: darkgreen; -fx-text-fill: white; -fx-font-weight: bold; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Start" />
+                        <Button fx:id="startButton" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: linear-gradient(green, darkgreen),        radial-gradient(center 50% -40%, radius 200%, green 45%, darkgreen 50%);; -fx-text-fill: white; -fx-font-weight: bold; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Start" />
                     </items>
                   </ToolBar>
                   <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="240.0" HBox.hgrow="NEVER">

@@ -18,6 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 480, 240);
+        scene.getStylesheets().add(getClass().getResource("/rybres/dataparcel/startStopButton.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("DataParcel");
         stage.show();
