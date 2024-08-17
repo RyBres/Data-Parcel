@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import java.io.File;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -87,12 +88,12 @@ public class PrimaryController {
                 methodParamTextField.setPromptText("# Partitions");
                 sizeParamComboBox.setVisible(false);
                 break;
-/*
+            /*
             case "Partition size":
                 methodParamTextField.setPromptText("Size");
                 sizeParamComboBox.setVisible(true);
                 break;
-*/
+             */
             default:
                 methodParamTextField.setPromptText("# Rows");
                 sizeParamComboBox.setVisible(false);
@@ -104,45 +105,87 @@ public class PrimaryController {
     // Start button
     @FXML
     private Button startButton; // this should probably be called startStopButton or something since that's what it is
-
     private final PartitionMethods partitionMethods = new PartitionMethods();
-    
-    private boolean processStarted = true;
-    
+    private boolean processStarted = false;
+    private Task<Void> processingTask;
+
     @FXML
     private void handleStartButtonAction(ActionEvent event) {
-        
-        if (processStarted == true) {
-            try {
-                // Define input variables
-                String methodType = methodComboBox.getValue();
-                String inputFile = inputPathTextField.getText();
-                String outputFile = outputPathTextField.getText();
+        processStarted = !processStarted;
+
+        if (processStarted) {
+            // Update button state to 'Stop'
+
+            setToStopButton();
+
+            processingTask = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception, IOException {
+                    // Define input variables
+                    String methodType = methodComboBox.getValue();
+                    String inputFile = inputPathTextField.getText();
+                    String outputFile = outputPathTextField.getText();
+                    int rowNumber = Integer.parseInt(methodParamTextField.getText());
+
+                    // Process
+                    partitionMethods.startParsingMethod(methodType, inputFile, outputFile, rowNumber);
+
+                    return null;
+                }
+
+                @Override
+                protected void succeeded() {
+                    super.succeeded();
+                    // Update button state to 'Start' when processing ends
+                    setToStartButton();
+                    processStarted = false;
+                }
+
+                @Override
+                protected void failed() {
+                    super.failed();
+                    // Handle errors and update button state
+                    setToStartButton();
+                    processStarted = false;
+                }
                 
-                int rowNumber;
-                rowNumber = Integer.parseInt(methodParamTextField.getText());
-                
-                // Initiate processing
-                partitionMethods.startAnyMethod(methodType, inputFile, outputFile, rowNumber);
-                processStarted = !processStarted; // boolean switch for starting/stopping. Only switches if user input is correct, else IO exception
-                
-                // Change appearance to stop button
-                System.out.println("Start button clicked");
-                startButton.setText("Stop");
-                startButton.getStyleClass().add("button-stop");
-                
-            } catch (IOException e) {
-                e.printStackTrace();
+                @Override
+                protected void cancelled() {
+                    super.cancelled();
+                    // Handle task cancellation
+                    setToStartButton();
+                    processStarted = false;
+                }
+            };
+
+            new Thread(processingTask).start();
+        } else {
+            // Kill process
+            if (processingTask != null && processingTask.isRunning()) {
+                System.out.println(processingTask.isDone());
+                processingTask.cancel(true);
             }
-            
-        } else if (processStarted == false) {
+            System.out.println(processingTask.isDone());
+            processingTask.cancel(true);
+
+            // Update button state to 'Start'
+            setToStartButton();
+            processStarted = false;
+
             System.out.println("Stop button clicked");
-            startButton.setText("Start");
-            startButton.getStyleClass().add("button-start");
-            
-            // Stopping method goes here
         }
-        
+    }
+
+    private void setToStopButton() {
+        startButton.setText("Stop");
+        startButton.getStyleClass().remove("button-start");
+        startButton.getStyleClass().add("button-stop");
+    }
+
+    private void setToStartButton() {
+        startButton.setText("Start");
+        startButton.getStyleClass().remove("button-stop");
+        startButton.getStyleClass().add("button-start");
     }
 
 }

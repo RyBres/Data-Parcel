@@ -21,8 +21,12 @@ import java.io.File;
 import static java.lang.Math.ceil;
 
 public class PartitionMethods {
-
-    public void startAnyMethod(String methodType, String inputFile, String outputFile, int rowNumber) throws IOException {
+    
+    /* Start and stop methods */
+    private volatile boolean shouldStop = false;
+    
+    public void startParsingMethod(String methodType, String inputFile, String outputFile, int rowNumber) throws IOException {
+        
         System.out.println("Method type: " + methodType);
         System.out.println("Input file: " + inputFile);
         System.out.println("Output file: " + outputFile);
@@ -43,6 +47,13 @@ public class PartitionMethods {
         }
     }
     
+    public void stopParsingMethod() {
+        shouldStop = true;
+    }
+    
+    /* Partition calculation methods */
+    
+    // By partition number calc
     public int calculatePartitions(String inputFile, int numPart) {
         long inputFileRowNumber = (long) 0.0;
         long perPartRowNumber = (long) 0.0;
@@ -59,7 +70,8 @@ public class PartitionMethods {
         
         return ceilPerPartRowNumber;
     }
-
+    
+    /* Parsing methods */
     public void rowMethod(String inputFile, String outputFile, int rowNumber) throws IOException {
         // Set processor settings + processor
         CsvParserSettings parserSettings = new CsvParserSettings();
@@ -89,6 +101,7 @@ public class PartitionMethods {
         // Iterate over rows - read, append to list, write to file after n-1 iterations
         String[] rowContent;
         while ((rowContent = parser.parseNext()) != null) {
+            
             writer.write(String.join(",", rowContent) + "\n");
             currentRowCount++;
 
@@ -99,13 +112,17 @@ public class PartitionMethods {
                 writeHeaders(writer, headers);
                 currentRowCount = 0; // Reset row count for next partition
             }
+            
         }
 
         // Close the last file
         writer.close();
         parser.stopParsing(); // Stop parsing the input file
+        shouldStop = false; // reset flag
     }
-
+    
+    /* Helper methods */
+    
     // Helper method to open a new file for writing
     private BufferedWriter openNewFile(String inputFileName, String outputPathName, int fileNumber) throws IOException {
         
