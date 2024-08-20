@@ -5,8 +5,11 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import java.io.File;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -66,8 +69,8 @@ public class PrimaryController {
 
     @FXML
     private void handleExitButtonAction(ActionEvent event) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        Platform.exit();
+        System.exit(0);
     }
 
     // Method menu selection
@@ -101,6 +104,19 @@ public class PrimaryController {
         }
 
     }
+    
+    // Columns button
+    private static Scene columnsScene;
+    
+    @FXML
+    private void handleColumnsButton(ActionEvent event) throws IOException {
+       columnsScene = new Scene(new FXMLLoader(App.class.getResource("columnsMenu.fxml")).load(), 480, 240);
+       // can load CSS here if needed
+       Stage stage = new Stage();
+       stage.setScene(columnsScene);
+       stage.show();
+    }
+    
 
     // Start button
     @FXML

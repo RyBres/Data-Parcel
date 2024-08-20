@@ -47,10 +47,6 @@ public class PartitionMethods {
         }
     }
     
-    public void stopParsingMethod() {
-        shouldStop = true;
-    }
-    
     /* Partition calculation methods */
     
     // By partition number calc
