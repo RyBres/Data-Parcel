@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PrimaryController {
@@ -110,11 +111,14 @@ public class PrimaryController {
     
     @FXML
     private void handleColumnsButton(ActionEvent event) throws IOException {
-       columnsScene = new Scene(new FXMLLoader(App.class.getResource("columnsMenu.fxml")).load(), 480, 240);
-       // can load CSS here if needed
+       columnsScene = new Scene(new FXMLLoader(App.class.getResource("columnsMenu.fxml")).load(), 400, 400);
+       columnsScene.getStylesheets().add(getClass().getResource("/rybres/dataparcel/confirmButton.css").toExternalForm());
        Stage stage = new Stage();
+       stage.setTitle("DataParcel: Select Columns");
+       stage.initModality(Modality.APPLICATION_MODAL);
        stage.setScene(columnsScene);
        stage.show();
+       stage.setResizable(false);
     }
     
 
@@ -152,6 +156,7 @@ public class PrimaryController {
                 @Override
                 protected void succeeded() {
                     super.succeeded();
+                    updateMessage("Success!");
                     // Update button state to 'Start' when processing ends
                     setToStartButton();
                     processStarted = false;
@@ -160,6 +165,7 @@ public class PrimaryController {
                 @Override
                 protected void failed() {
                     super.failed();
+                    updateMessage("Failed!");
                     // Handle errors and update button state
                     setToStartButton();
                     processStarted = false;
@@ -168,6 +174,7 @@ public class PrimaryController {
                 @Override
                 protected void cancelled() {
                     super.cancelled();
+                    updateMessage("Cancelled!");
                     // Handle task cancellation
                     setToStartButton();
                     processStarted = false;
