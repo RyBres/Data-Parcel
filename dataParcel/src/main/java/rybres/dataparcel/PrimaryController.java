@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import rybres.dataparcel.model.FileHandler;
 
 public class PrimaryController {
 
@@ -40,15 +41,12 @@ public class PrimaryController {
     // Path textField
     @FXML
     private TextField inputPathTextField;
+    
+    private FileHandler fileHandler = new FileHandler();
 
     @FXML
     private void handleBrowseButtonAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select File");
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-        if (selectedFile != null) {
-            inputPathTextField.setText(selectedFile.getAbsolutePath());
-        }
+        fileHandler.selectFile(inputPathTextField);
     }
 
     @FXML
@@ -56,12 +54,7 @@ public class PrimaryController {
 
     @FXML
     private void handleBrowseButton1Action(ActionEvent event) {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Select Directory");
-        File selectedDirectory = directoryChooser.showDialog(new Stage());
-        if (selectedDirectory != null) {
-            outputPathTextField.setText(selectedDirectory.getAbsolutePath());
-        }
+        fileHandler.selectDirectory(outputPathTextField);
     }
 
     // Exit button
