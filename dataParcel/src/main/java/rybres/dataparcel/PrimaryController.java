@@ -5,10 +5,14 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -17,6 +21,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import rybres.dataparcel.model.FileHandler;
+import rybres.dataparcel.model.InputFileInfo;
 
 public class PrimaryController {
 
@@ -44,9 +49,16 @@ public class PrimaryController {
     
     private FileHandler fileHandler = new FileHandler();
 
+    private InputFileInfo inputFileInfo;
+    
     @FXML
     private void handleBrowseButtonAction(ActionEvent event) {
         fileHandler.selectFile(inputPathTextField);
+        
+        if(!inputPathTextField.getText().isEmpty()) {
+            inputFileInfo = new InputFileInfo(inputPathTextField.getText());
+            System.out.println(Arrays.toString(inputFileInfo.getColumnNames()));
+        }
     }
 
     @FXML
@@ -104,16 +116,31 @@ public class PrimaryController {
     
     @FXML
     private void handleColumnsButton(ActionEvent event) throws IOException {
-       columnsScene = new Scene(new FXMLLoader(App.class.getResource("columnsMenu.fxml")).load(), 400, 400);
-       columnsScene.getStylesheets().add(getClass().getResource("/rybres/dataparcel/confirmButton.css").toExternalForm());
-       Stage stage = new Stage();
-       stage.setTitle("DataParcel: Select Columns");
-       stage.initModality(Modality.APPLICATION_MODAL);
-       stage.setScene(columnsScene);
-       stage.show();
-       stage.setResizable(false);
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("columnsMenu.fxml"));
+            Parent root = loader.load();
+
+            columnsScene = new Scene(root, 400, 400);
+            columnsScene.getStylesheets().add(getClass().getResource("/rybres/dataparcel/confirmButton.css").toExternalForm());
+
+            // Get the controller instance from the FXMLLoader
+            ColumnsMenuController columnsMenuController = loader.getController();
+
+            // Populate the ListView with column names
+            List<String> listViewColNames = new ArrayList<>(Arrays.asList(inputFileInfo.getColumnNames()));
+            columnsMenuController.setFieldsIncludeListView(listViewColNames);
+
+            // Create and show the new stage
+            Stage stage = new Stage();
+            stage.setTitle("DataParcel: Select Columns");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(columnsScene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        }
     }
-    
 
     // Start button
     @FXML

@@ -44,12 +44,12 @@
                      <opaqueInsets>
                         <Insets left="10.0" />
                      </opaqueInsets></HBox>
-                  <ListView prefHeight="360.0" prefWidth="190.0">
+                  <ListView fx:id="includeListView" prefHeight="360.0" prefWidth="190.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Exclude selected &gt;&gt;">
+                  <Button fx:id="excludeButton" mnemonicParsing="false" onAction="#handleExcludeButtonAction" prefHeight="25.0" prefWidth="130.0" text="Exclude selected &gt;&gt;">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </VBox.margin>
@@ -67,12 +67,12 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ListView prefHeight="360.0" prefWidth="190.0">
+                  <ListView fx:id="excludeListView" prefHeight="360.0" prefWidth="190.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="&lt;&lt; Include selected">
+                  <Button fx:id="includeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="&lt;&lt; Include selected">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </VBox.margin>
