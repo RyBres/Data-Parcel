@@ -17,12 +17,12 @@
                <children>
                   <ToolBar prefHeight="40.0" prefWidth="200.0">
                     <items>
-                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="button-confirm" text="Confirm" />
+                      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#handleConfirmButtonAction" prefHeight="25.0" prefWidth="65.0" styleClass="button-confirm" text="Confirm" />
                     </items>
                   </ToolBar>
                   <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
                     <items>
-                      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Cancel" />
+                      <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="60.0" text="Cancel" />
                     </items>
                   </ToolBar>
                </children>
@@ -72,7 +72,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button fx:id="includeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="&lt;&lt; Include selected">
+                  <Button fx:id="includeButton" mnemonicParsing="false" onAction="#handleIncludeButtonAction" prefHeight="25.0" prefWidth="130.0" text="&lt;&lt; Include selected">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </VBox.margin>

@@ -11,6 +11,9 @@ import com.univocity.parsers.csv.CsvRoutines;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -24,6 +27,9 @@ public class InputFileInfo {
     private int columnCount;
     private long rowCount;
     private long fileSize;
+    private List<String> includedColumns;
+    private List<String> excludedColumns;
+    private boolean confirmSwitch;
     
     // Constructor
     public InputFileInfo(String inputFile) {
@@ -33,9 +39,22 @@ public class InputFileInfo {
         this.columnNames = parseColumnNames();
         this.columnCount = columnNames.length;
         this.rowCount = parseRowCount();
+        this.includedColumns = new ArrayList<>(Arrays.asList(columnNames));
+        this.excludedColumns = new ArrayList<>();
+        this.confirmSwitch = false;
     }
     
     // Public methods
+    
+    // Get
+    public List<String> getIncludedColumns() {
+        return includedColumns;
+    }
+    
+    public List<String> getExcludedColumns() {
+        return excludedColumns;
+    }
+    
     public String getInputPath() {
         return inputPath;
     }
@@ -56,6 +75,22 @@ public class InputFileInfo {
         return fileSize;
     }
     
+    public boolean getConfirmSwitchValue() {
+        return confirmSwitch;
+    }
+    
+    // Set
+    public void setIncludedColumns(List<String> ic) {
+        this.includedColumns = ic;
+    }
+    
+    public void setExcludedColumns(List<String> ec) {
+        this.excludedColumns = ec;
+    }
+    
+    public void setConfirmSwitchTrue() {
+        this.confirmSwitch = true;
+    }
     
     // Private methods, which actually do some processing (hence why they're not public)
     private String[] parseColumnNames() {

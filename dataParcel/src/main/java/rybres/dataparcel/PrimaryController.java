@@ -55,7 +55,7 @@ public class PrimaryController {
     private void handleBrowseButtonAction(ActionEvent event) {
         fileHandler.selectFile(inputPathTextField);
         
-        if(!inputPathTextField.getText().isEmpty()) {
+        if(!inputPathTextField.getText().isEmpty()) { // can add logic for testing if the string is same as before
             inputFileInfo = new InputFileInfo(inputPathTextField.getText());
             System.out.println(Arrays.toString(inputFileInfo.getColumnNames()));
         }
@@ -125,10 +125,19 @@ public class PrimaryController {
 
             // Get the controller instance from the FXMLLoader
             ColumnsMenuController columnsMenuController = loader.getController();
-
-            // Populate the ListView with column names
-            List<String> listViewColNames = new ArrayList<>(Arrays.asList(inputFileInfo.getColumnNames()));
-            columnsMenuController.setFieldsIncludeListView(listViewColNames);
+            
+            // Pass the inputFileInfo object to the secondary controller
+            columnsMenuController.setInputFileInfo(inputFileInfo);
+            
+            if (inputFileInfo.getConfirmSwitchValue() == false) {
+                // Populate the ListView with all column names, since either new file or no cols dropped
+                List<String> listViewColNames = new ArrayList<>(Arrays.asList(inputFileInfo.getColumnNames()));
+                columnsMenuController.setFieldsIncludeListView(listViewColNames);
+            } else {
+                // Populate with the saved columns (which were confirmed, which flips boolean to true) go here
+                columnsMenuController.setFieldsIncludeListView(inputFileInfo.getIncludedColumns());
+                columnsMenuController.setFieldsExcludeListView(inputFileInfo.getExcludedColumns());
+            }
 
             // Create and show the new stage
             Stage stage = new Stage();
