@@ -19,13 +19,15 @@ import com.univocity.parsers.csv.CsvParserSettings;
 import com.univocity.parsers.csv.CsvRoutines;
 import java.io.File;
 import static java.lang.Math.ceil;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PartitionMethods {
     
     /* Start and stop methods */
     private volatile boolean shouldStop = false;
     
-    public void startParsingMethod(String methodType, String inputFile, String outputFile, int rowNumber) throws IOException {
+    public void startParsingMethod(String methodType, String inputFile, String outputFile, int rowNumber, String[] includedCols) throws IOException {
         
         System.out.println("Method type: " + methodType);
         System.out.println("Input file: " + inputFile);
@@ -34,11 +36,11 @@ public class PartitionMethods {
         
         switch (methodType) {
             case "Row number":
-                rowMethod(inputFile, outputFile, rowNumber);
+                rowMethod(inputFile, outputFile, rowNumber, includedCols);
                 break;
             case "Partition number":
                 int rowNum = calculatePartitions(inputFile, rowNumber);
-                rowMethod(inputFile, outputFile, rowNum);
+                rowMethod(inputFile, outputFile, rowNum, includedCols);
                 break;
             case "Partition size":
                 break;
@@ -68,9 +70,10 @@ public class PartitionMethods {
     }
     
     /* Parsing methods */
-    public void rowMethod(String inputFile, String outputFile, int rowNumber) throws IOException {
+    public void rowMethod(String inputFile, String outputFile, int rowNumber, String[] includedCols) throws IOException {
         // Set processor settings + processor
         CsvParserSettings parserSettings = new CsvParserSettings();
+        parserSettings.selectFields(includedCols);
         parserSettings.setLineSeparatorDetectionEnabled(true);
         parserSettings.setHeaderExtractionEnabled(true);
 
@@ -86,7 +89,7 @@ public class PartitionMethods {
         parser.beginParsing(parserFileReader);
         
         // Get headers - will be at top of each partition
-        String[] headers = parser.getContext().headers();
+        String[] headers = includedCols;
 
         int fileCount = 1; // Starting with the first output file
         int currentRowCount = 0; // Counts rows in the current partition

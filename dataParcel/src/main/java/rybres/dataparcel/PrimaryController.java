@@ -159,7 +159,7 @@ public class PrimaryController {
     private Task<Void> processingTask;
 
     @FXML
-    private void handleStartButtonAction(ActionEvent event) {
+    private void handleStartButtonAction(ActionEvent event) throws IOException {
         processStarted = !processStarted;
 
         if (processStarted) {
@@ -175,9 +175,10 @@ public class PrimaryController {
                     String inputFile = inputPathTextField.getText();
                     String outputFile = outputPathTextField.getText();
                     int rowNumber = Integer.parseInt(methodParamTextField.getText());
+                    String[] includedCols = inputFileInfo.getIncludedColumns().toArray(new String[0]);
 
                     // Process
-                    partitionMethods.startParsingMethod(methodType, inputFile, outputFile, rowNumber);
+                    partitionMethods.startParsingMethod(methodType, inputFile, outputFile, rowNumber, includedCols);
 
                     return null;
                 }
