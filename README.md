@@ -13,6 +13,11 @@ A JavaFX-based (Java 22) desktop application designed for processing and partiti
 - **Responsive UI:** The UI remains responsive even during long-running tasks, allowing users to interrupt and stop processes as needed.
 
 ## **Screenshots**
+![Screenshot 2025-01-05 155722](https://github.com/user-attachments/assets/3b685f7d-8b60-4cf1-af02-9a83458c24c2)
+
+![Screenshot 2025-01-05 160748](https://github.com/user-attachments/assets/f77baad5-9a08-48c6-b594-753e58b7049d)
+
+![Screenshot 2025-01-05 161057](https://github.com/user-attachments/assets/211e0ea4-068b-46e2-b8b3-73f785e19ee6)
 
 ## **Installation**
 
@@ -44,9 +49,9 @@ Build and run the project. (Note that this still needs to be properly packaged -
 
 ### **Prerequisites**
 
-Java 8 or higher
+- Java 22
 
-JavaFX SDK
+- JavaFX SDK
 
 ### **Running the App**
 
