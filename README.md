@@ -1,8 +1,8 @@
-\textbf{DataParcel: Partition Processing App}
+**DataParcel: Partition Processing App**
 
 A JavaFX-based desktop application designed for processing and partitioning large datasets with ease. This app allows users to select various partitioning methods, process input files, and manage output files seamlessly. The interface is simple and intuitive, making it suitable for both novice and experienced users.
 
-\textbf{Features}
+**Features**
 
 Multiple Partitioning Methods: Choose from different partitioning methods such as row number, partition number, and partition size.
 
