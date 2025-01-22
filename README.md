@@ -43,7 +43,7 @@ Build and run the project. (Note that this still needs to be properly packaged -
 
 4. Click the "Start" button to begin processing.
 
-5. To stop processing, click the "Stop" button.
+5. To interrupt processing, click the "Stop" button.
 
 ## **Development**
 
