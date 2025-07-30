@@ -1,6 +1,6 @@
 # **DataParcel: Partition Processing App**
 
-A JavaFX-based (Java 22) desktop application designed for processing and partitioning large datasets with ease using univocity parsers. This app allows users to select various partitioning methods, process input files, and manage output files seamlessly. The interface is simple and intuitive, making it ideal for novice or non-technical users.
+A JavaFX-based (Java 22) desktop application designed for processing and partitioning large datasets with ease using univocity parsers. This app allows users to select various partitioning methods, process input files, and manage output files seamlessly. The interface is simple and intuitive, making it ideal for novice or non-technical users. Note that this version of DataParcel is a prototype.
 
 ## **Features**
 
